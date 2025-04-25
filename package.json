@@ -15,7 +15,7 @@
     "build"
   ],
   "keywords": [],
-  "author": "Marcel Marais",
+  "author": "Sergio Lazaro",
   "description": "A Model Context Protocol server for Spotify integration",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.6.1",
