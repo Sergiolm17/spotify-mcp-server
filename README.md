@@ -33,11 +33,11 @@ A lightweight [Model Context Protocol (MCP)](https://modelcontextprotocol.io) se
 
 1. **searchSpotify**
 
-   - **Description**: Search for tracks, albums, artists, or playlists on Spotify
+   - **Description**: Search for tracks, albums, artists, playlists, shows, or episodes on Spotify
    - **Parameters**:
      - `query` (string): The search term
-     - `type` (string): Type of item to search for (track, album, artist, playlist)
-     - `limit` (number, optional): Maximum number of results to return (10-50)
+     - `type` (string): Type of item to search for (track, album, artist, playlist, show, episode)
+     - `limit` (number, optional): Maximum number of results to return (1-50)
    - **Returns**: List of matching items with their IDs, names, and additional details
    - **Example**: `searchSpotify("bohemian rhapsody", "track", 20)`
 
@@ -82,6 +82,57 @@ A lightweight [Model Context Protocol (MCP)](https://modelcontextprotocol.io) se
      - `limit` (number, optional): A number specifying the maximum number of tracks to return.
    - **Returns**: If tracks are found it returns a formatted list of recently played tracks else a message stating: "You don't have any recently played tracks on Spotify".
    - **Example**: `getRecentlyPlayed({ limit: 10 })`
+
+7. **followPlaylist**
+
+   - **Description**: Follow a Spotify playlist for the current user.
+   - **Parameters**:
+     - `playlistId` (string): The Spotify ID of the playlist to follow.
+     - `public` (boolean, optional): If true, the playlist will be included in user's public playlists, if false it will remain private. Defaults to true.
+   - **Returns**: Success message confirming the playlist was followed.
+   - **Example**: `followPlaylist({ playlistId: "37i9dQZEVXcJZyENOWUFo7", public: false })`
+
+8. **unfollowPlaylist**
+
+   - **Description**: Unfollow a Spotify playlist for the current user.
+   - **Parameters**:
+     - `playlistId` (string): The Spotify ID of the playlist to unfollow.
+   - **Returns**: Success message confirming the playlist was unfollowed.
+   - **Example**: `unfollowPlaylist({ playlistId: "37i9dQZEVXcJZyENOWUFo7" })`
+
+9. **followArtistsOrUsers**
+
+   - **Description**: Follow one or more Spotify artists or users.
+   - **Parameters**:
+     - `type` (string): The type of item to follow: 'artist' or 'user'.
+     - `ids` (array): An array of Spotify artist or user IDs to follow (max 50).
+   - **Returns**: Success message confirming the artists or users were followed.
+   - **Example**: `followArtistsOrUsers({ type: "artist", ids: ["0TnOYISbd1XYRBk9myaseg"] })`
+
+10. **unfollowArtistsOrUsers**
+
+    - **Description**: Unfollow one or more Spotify artists or users.
+    - **Parameters**:
+      - `type` (string): The type of item to unfollow: 'artist' or 'user'.
+      - `ids` (array): An array of Spotify artist or user IDs to unfollow (max 50).
+    - **Returns**: Success message confirming the artists or users were unfollowed.
+    - **Example**: `unfollowArtistsOrUsers({ type: "artist", ids: ["0TnOYISbd1XYRBk9myaseg"] })`
+
+11. **saveTracks**
+
+    - **Description**: Save one or more tracks to the current user's 'Your Music' library.
+    - **Parameters**:
+      - `ids` (array): An array of Spotify track IDs to save (max 50).
+    - **Returns**: Success message confirming the tracks were saved.
+    - **Example**: `saveTracks({ ids: ["4iV5W9uYEdYUVa79Axb7Rh"] })`
+
+12. **removeTracks**
+
+    - **Description**: Remove one or more tracks from the current user's 'Your Music' library.
+    - **Parameters**:
+      - `ids` (array): An array of Spotify track IDs to remove (max 50).
+    - **Returns**: Success message confirming the tracks were removed.
+    - **Example**: `removeTracks({ ids: ["4iV5W9uYEdYUVa79Axb7Rh"] })`
 
 ### Play / Create Operations
 
